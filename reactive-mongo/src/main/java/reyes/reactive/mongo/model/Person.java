@@ -1,4 +1,4 @@
-package reyes.reactiveDataAccess.model;
+package reyes.reactive.mongo.model;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

@@ -1,0 +1,5 @@
+rootProject.name = 'reactive-data-access'
+
+include 'reactive-couchbase'
+include 'reactive-mongo'
+

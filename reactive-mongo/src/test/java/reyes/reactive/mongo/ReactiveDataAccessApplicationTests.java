@@ -1,4 +1,4 @@
-package reyes.reactiveDataAccess;
+package reyes.reactive.mongo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,5 +12,4 @@ public class ReactiveDataAccessApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

@@ -1,8 +1,8 @@
-package reyes.reactiveDataAccess.repository;
+package reyes.reactive.mongo.repository;
 
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Flux;
-import reyes.reactiveDataAccess.model.Person;
+import reyes.reactive.mongo.model.Person;
 
 public interface ReactivePersonRepository extends ReactiveCrudRepository<Person, String> {
 

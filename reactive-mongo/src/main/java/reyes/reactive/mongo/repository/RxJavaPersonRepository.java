@@ -1,4 +1,4 @@
-package reyes.reactiveDataAccess.repository;
+package reyes.reactive.mongo.repository;
 
 import io.reactivex.Flowable;
 import io.reactivex.Maybe;
@@ -6,7 +6,7 @@ import io.reactivex.Single;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.Tailable;
 import org.springframework.data.repository.reactive.RxJava2CrudRepository;
-import reyes.reactiveDataAccess.model.Person;
+import reyes.reactive.mongo.model.Person;
 
 public interface RxJavaPersonRepository extends RxJava2CrudRepository<Person, String> {
 

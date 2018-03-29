@@ -1,4 +1,4 @@
-package reyes.reactiveDataAccess;
+package reyes.reactive.mongo;
 
 import io.reactivex.Flowable;
 import org.junit.Before;
@@ -16,9 +16,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
-import reyes.reactiveDataAccess.model.Person;
-import reyes.reactiveDataAccess.repository.RxJavaPersonRepository;
-
+import reyes.reactive.mongo.model.Person;
+import reyes.reactive.mongo.repository.RxJavaPersonRepository;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -82,7 +81,7 @@ public class ReactiveMongoIntegrationTest {
                 .thenMany(
                         operationsRepository.insert(Person.class).all(persons)
                 ).last()
-                .flatMap(x -> reactiveRepository.count())
+                .flatMap(x -> operationsRepository.query(Person.class).count())
                 .doOnNext((x -> LOGGER.info("count persons: " + x)));
 
         StepVerifier.create(saveAndCount).expectNext(4L).verifyComplete();
