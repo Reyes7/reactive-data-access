@@ -11,12 +11,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.ReactiveFluentMongoOperations;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.test.context.junit4.SpringRunner;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 import reyes.reactive.mongo.model.Person;
+import reyes.reactive.mongo.repository.ReactivePersonCrudRepository;
 import reyes.reactive.mongo.repository.RxJavaPersonRepository;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +35,7 @@ public class ReactiveMongoIntegrationTest {
     private ReactiveMongoTemplate reactiveMongoTemplate;
 
     @Autowired
-    private ReactiveCrudRepository reactiveRepository;
+    private ReactivePersonCrudRepository reactiveCrudRepository;
 
     @Autowired
     private RxJavaPersonRepository rxJavaRepository;
@@ -89,16 +89,16 @@ public class ReactiveMongoIntegrationTest {
 
     @Test
     public void shouldInsertAndCountDataOverReactiveRepository() {
-        Mono<Long> saveAndCount = reactiveRepository.count()
+        Mono<Long> saveAndCount = reactiveCrudRepository.count()
                 .doOnNext(x -> LOGGER.info("count persons: " + x))
-                .thenMany(reactiveRepository.saveAll(
+                .thenMany(reactiveCrudRepository.saveAll(
                         Flux.just(
                                 new Person("Kylo", "Ren", 25),
                                 new Person("Queen", "Leia", 23)
                         )
                 ))
                 .last()
-                .flatMap(x -> reactiveRepository.count())
+                .flatMap(x -> reactiveCrudRepository.count())
                 .doOnNext(x -> LOGGER.info("count persons: " + x));
 
         StepVerifier.create(saveAndCount).expectNext(4L).verifyComplete();
