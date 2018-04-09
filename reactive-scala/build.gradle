@@ -1,0 +1,28 @@
+version 'unspecified'
+
+apply plugin: 'scala'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+buildscript {
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile('org.scala-lang:scala-library:2.12.4')
+    compile('com.typesafe.akka:akka-stream_2.12:2.5.11')
+
+
+    compile('org.springframework.boot:spring-boot-starter-data-mongodb-reactive:2.0.1.RELEASE')
+
+//    T E S T
+    testCompile('org.scalactic:scalactic_2.12:3.0.5')
+    testCompile('org.scalatest:scalatest_2.12:3.0.5')
+}
